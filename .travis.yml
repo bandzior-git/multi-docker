@@ -14,5 +14,10 @@ after_success:
   - docker build -t bandzior-git/multi-nginx ./nginx
   - docker build -t bandzior-git/multi-server ./server
   - docker build -t bandzior-git/multi-worker ./worker
-
-# Login to docker CLI
+  # Login to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Push images to docker hub
+  - docker push bandzior-git/multi-client
+  - docker push bandzior-git/multi-nginx
+  - docker push bandzior-git/multi-server
+  - docker push bandzior-git/multi-worker
